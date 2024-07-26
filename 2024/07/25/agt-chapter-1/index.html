@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/notebooks/images/favicon.svg" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+
+<link rel="stylesheet" href="/notebooks/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/notebooks/styles/post.css">
+
+
+
+<title>Chaper 1: Basic Solution Concepts and Computational Issues - Brybry Royal Kindergarden</title>
+
+    <!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/notebooks/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/notebooks/posts"
+                            ><span>Notes</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/notebooks/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/notebooks/categories"
+                            ><span>Books</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/notebooks/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+    <!-- <div class="cover-image">
+        <img src="" alt="Cover Image">
+    </div> -->
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                Chaper 1: Basic Solution Concepts and Computational Issues
+            
+        </h1>
+        <div>
+            <time>2024-07-25</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="separator">/</span>
+                            <a href="/notebooks/categories/Algorithmic-Game-Theory/">Algorithmic Game Theory</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="separator">#</span>
+                        <a href="/notebooks/tags/Game-Theory/">Game Theory</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+
+    <h1><span id="table-of-contents">Table of Contents</span></h1>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#1-introduction">1. Introduction</a></li>
+<li><a href="#2-games-old-and-new">2. Games, Old and New</a>
+<ul>
+<li><a href="#21-key-definitions">2.1 Key Definitions:</a></li>
+<li><a href="#22-important-notations">2.2 Important Notations:</a>
+<ul>
+<li><a href="#23-the-prisoners-dilemma">2.3 The Prisoner's
+Dilemma:</a></li>
+</ul></li>
+<li><a href="#24-isp-routing-game">2.4 ISP Routing Game:</a></li>
+<li><a href="#25-pollution-game-tragedy-of-the-commons">2.5 Pollution
+Game (Tragedy of the Commons):</a></li>
+<li><a href="#26-coordination-games">2.6 Coordination Games:</a></li>
+<li><a href="#27-routing-congestion-game">2.7 Routing Congestion
+Game:</a>
+<ul>
+<li><a href="#summary">Summary:</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#3-games-strategies-costs-and-payoffs">3. Games,
+Strategies, Costs and Payoffs</a></li>
+<li><a href="#4-basic-solution-concepts">4. Basic Solution
+Concepts</a></li>
+<li><a href="#5-finding-equilibria-and-learning-in-games">5. Finding
+Equilibria and Learning in Games</a></li>
+<li><a href="#6-refinement-of-nash-games-with-turns-and-subgame-perfect-equilibrium">6.
+Refinement of Nash: Games with Turns and Subgame Perfect
+Equilibrium</a></li>
+<li><a href="#7-nash-equilibrium-without-full-information-bayesian-games">7.
+Nash Equilibrium without Full Information: Bayesian Games</a></li>
+<li><a href="#8-cooperative-games">8. Cooperative Games</a></li>
+<li><a href="#9-markets-and-their-algorithmic-issues">9. Markets and
+Their Algorithmic Issues</a></li>
+<li><a href="#10-conclusion">10. Conclusion</a></li>
+</ul>
+<h1><span id="1-introduction">1. Introduction</span></h1>
+<p>The chapter provides a foundation for algorithmic game theory,
+focusing on game theory concepts applied to Internet scenarios and
+computational issues related to finding equilibria: - Introduces game
+theory concepts in the context of the Internet. - Illustrates classical
+games and their Internet-based applications. - Sets the foundation for
+understanding algorithmic approaches to game theory.</p>
+<h1><span id="2-games-old-and-new">2. Games, Old and New</span></h1>
+<h2><span id="21-key-definitions">2.1 Key Definitions:</span></h2>
+<ul>
+<li><strong>Game Theory:</strong> The study of mathematical models of
+strategic interaction among rational decision-makers.</li>
+<li><strong>Cost Matrix:</strong> A matrix representation of the costs
+or payoffs for each player depending on their strategies.</li>
+<li><strong>Dominant Strategy:</strong> A strategy that is optimal for a
+player, regardless of the strategies chosen by other players.</li>
+<li><strong>Mixed Strategy:</strong> A strategy where players randomize
+over possible actions to optimize their outcomes.</li>
+</ul>
+<h2><span id="22-important-notations">2.2 Important Notations:</span></h2>
+<ul>
+<li><strong>Nash Equilibrium:</strong> A set of strategies where no
+player can benefit by unilaterally changing their strategy. Denoted as (
+s S ) where ( S ) is the set of all possible strategy vectors.</li>
+<li><strong>Correlated Equilibrium:</strong> An extension of Nash
+equilibrium where an external correlation device can recommend
+strategies to players.</li>
+</ul>
+<h3><span id="23-the-prisoners-dilemma">2.3 The Prisoner's Dilemma:</span></h3>
+<ul>
+<li><strong>Example 1.1:</strong> Two prisoners are on trial and must
+decide whether to confess or remain silent. The outcomes are:
+<ul>
+<li>If both confess, they get 4 years each.</li>
+<li>If both remain silent, they get 2 years each.</li>
+<li>If one confesses and the other remains silent, the confessor gets 1
+year and the other gets 5 years.</li>
+</ul></li>
+<li><strong>Application:</strong> Illustrates the conflict between
+individual rationality and collective benefit.</li>
+</ul>
+<h2><span id="24-isp-routing-game">2.4 ISP Routing Game:</span></h2>
+<ul>
+<li><strong>Example 1.2:</strong> Two ISPs must decide on routing
+traffic through two peering points (C and S). If both choose the closer
+peering point (C), they incur higher total costs due to congestion.
+<ul>
+<li>Costs are represented in a matrix similar to the Prisoner's Dilemma,
+where choosing C is analogous to confessing, and choosing S is analogous
+to remaining silent.</li>
+</ul></li>
+<li><strong>Application:</strong> Demonstrates how individual decisions
+in routing can lead to suboptimal outcomes for both ISPs.</li>
+</ul>
+<h2><span id="25-pollution-gametragedy-of-the-commons">2.5 Pollution Game
+(Tragedy of the Commons):</span></h2>
+<ul>
+<li><strong>Example 1.3:</strong> Multiple countries decide whether to
+control pollution. Controlling pollution has a cost, but not controlling
+it increases the overall cost due to increased pollution.
+<ul>
+<li>The cost matrix shows that if no country controls pollution, the
+total cost is higher for all.</li>
+</ul></li>
+<li><strong>Application:</strong> Extends the Prisoner's Dilemma to
+multiple players, showing the overuse of shared resources.</li>
+</ul>
+<h2><span id="26-coordination-games">2.6 Coordination Games:</span></h2>
+<ul>
+<li><strong>Example 1.4 (Battle of the Sexes):</strong> A boy and a girl
+must choose between attending a baseball game or a softball game. Each
+prefers a different game but wants to attend together.
+<ul>
+<li>The game has multiple equilibria where they either both attend the
+baseball game or both attend the softball game.</li>
+</ul></li>
+<li><strong>Application:</strong> Highlights the importance of
+coordination in decision-making.</li>
+</ul>
+<h2><span id="27-routing-congestion-game">2.7 Routing Congestion Game:</span></h2>
+<ul>
+<li><strong>Example 1.5:</strong> Two traffic streams need to be routed
+through two connection points (A and B) to avoid congestion.
+<ul>
+<li>The cost matrix reflects the delays incurred based on the routing
+choices.</li>
+</ul></li>
+<li><strong>Application:</strong> An anti-coordination game where good
+outcomes require players to choose different paths to avoid
+congestion.</li>
+</ul>
+<h4><span id="summary">Summary:</span></h4>
+<p>Section 1.1 introduces fundamental concepts of game theory using
+classical examples and their modern analogs, emphasizing their relevance
+in internet-based scenarios. The section covers the Prisoner's Dilemma,
+ISP routing, Pollution Game, Coordination Games, and Routing Congestion
+Games, providing a foundational understanding of strategic interactions
+and their implications.</p>
+<h1><span id="3-games-strategies-costsand-payoffs">3. Games, Strategies, Costs
+and Payoffs</span></h1>
+<h1><span id="4-basic-solution-concepts">4. Basic Solution Concepts</span></h1>
+<h1><span id="5-finding-equilibriaand-learning-in-games">5. Finding Equilibria
+and Learning in Games</span></h1>
+<h1><span id="6refinement-of-nash-games-with-turns-and-subgame-perfectequilibrium">6.
+Refinement of Nash: Games with Turns and Subgame Perfect
+Equilibrium</span></h1>
+<h1><span id="7nash-equilibrium-without-full-information-bayesian-games">7.
+Nash Equilibrium without Full Information: Bayesian Games</span></h1>
+<h1><span id="8-cooperative-games">8. Cooperative Games</span></h1>
+<h1><span id="9-markets-and-theiralgorithmic-issues">9. Markets and Their
+Algorithmic Issues</span></h1>
+<h1><span id="10-conclusion">10. Conclusion</span></h1>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+        </span>
+        <span class="next">
+            
+                <a href="/notebooks/2024/07/25/agt-chapter-2/" >
+                    Chapter 2: The Complexity of Finding Nash Equilibria
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Brian Qian</p>
+    <p>
+        Check me out at <a target="_blank" rel="noopener" href="https://kejiang.city/">my site</a>
+    </p>
+</footer>
+
+    </body>
+</html>
